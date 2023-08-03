@@ -81,12 +81,12 @@ export default function Home() {
   }
 
   return (
-    <main>
+    <main className="p-3">
       <div className="flex flex-row gap-1">
         <input
           type="text"
           value={description}
-          className="w-full text-black"
+          className="w-full text-black outline-none p-2"
           onChange={e => setDescription(e.target.value) }
         ></input>
 
@@ -119,7 +119,9 @@ export default function Home() {
       </div>
       <div className="flex flex-col">
         {toDos.map(v => <div key={v.id} className="flex flex-row">
-          <div>{v.description}</div>
+          <div
+            className="flex items-center"
+          >{v.description}</div>
           <div className="ml-auto">
             <button onClick={() => setEditedId(v.id)}>Edit</button>
             <button onClick={deleteToDo.bind(null, v.id)}>Delete</button>
