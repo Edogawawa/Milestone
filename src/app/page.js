@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 /**
  * @typedef {{
  *  id: string
@@ -12,7 +12,7 @@ const uid = function(){
 }
 
 /** @type {ToDo[]} */
-const ToDos = [
+const rawToDos = [
   {
     id: uid(),
     description: "Hello"
@@ -31,7 +31,19 @@ export default function Home() {
   const [description, setDescription] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
-  const [toDos, setToDo] = useState(ToDos)
+  const [toDos, setToDo] = useState(rawToDos)
+
+  const [editedId, setEditedId] = useState(undefined)
+  useEffect(() => {
+    if(editedId === undefined) return
+    const toDo = toDos.find(v => v.id === editedId)
+    if(!toDo) return
+    setDescription(toDo.description)
+  }, [editedId])
+
+  const clearInput = () => {
+    setDescription("")
+  }
 
   const createToDo = () => {
     if(description === ""){
@@ -39,11 +51,29 @@ export default function Home() {
       return
     }
 
-    setDescription("")
     setToDo([...toDos, {
       id: uid(),
       description: description
     }])
+    clearInput()
+  }
+
+  const updateToDo = () => {
+    setToDo(toDos.map(v => {
+      if(v.id === editedId){
+        return {
+          id: editedId,
+          description
+        }
+      } else return v
+    }))
+    setEditedId(undefined)
+    clearInput()
+  }
+
+  const cancelUpdateToDo = () => {
+    setEditedId(undefined)
+    clearInput()
   }
 
   const deleteToDo = (id) => {
@@ -52,31 +82,46 @@ export default function Home() {
 
   return (
     <main>
-      <div className="flex flex-row gap-1 text-black">
+      <div className="flex flex-row gap-1">
         <input
           type="text"
           value={description}
-          className="w-full"
+          className="w-full text-black"
           onChange={e => setDescription(e.target.value) }
         ></input>
-        <input
+
+        {/* <input
           type="date"
+          className="text-black"
           onChange={e => setDate(e.target.value)}
         ></input>
         <input
           type="time"
+          className="text-black"
           onChange={e => setTime(e.target.value)}
-        ></input>
-        <button 
-          onClick={createToDo}
-          className="text-white"
-        >Add</button>
+        ></input>*/}
+
+        {
+          editedId ? 
+          <div className="flex flex-row">
+            <button
+              onClick={updateToDo}
+            >Update</button>
+            <button
+              onClick={cancelUpdateToDo}
+            >Cancel</button>
+          </div> 
+          : 
+          <button
+            onClick={createToDo}
+          >Add</button>
+        }
       </div>
       <div className="flex flex-col">
         {toDos.map(v => <div key={v.id} className="flex flex-row">
           <div>{v.description}</div>
           <div className="ml-auto">
-            {/* <button>Edit</button> */}
+            <button onClick={() => setEditedId(v.id)}>Edit</button>
             <button onClick={deleteToDo.bind(null, v.id)}>Delete</button>
           </div>
         </div>)}
