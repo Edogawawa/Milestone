@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
  * @typedef {{
  *  id: string
  *  description: string
+ *  checked: boolean
  *  date?: string
  *  time?: string
  * }} ToDo
@@ -18,16 +19,19 @@ const rawToDos = [
   {
     id: uid(),
     description: "Hello",
+    checked: false,
     date: "", time: ""
   },
   {
     id: uid(),
     description: "Hello 2",
+    checked: false,
     date: "", time: ""
   },
   {
     id: uid(),
     description: "Hello 3",
+    checked: true,
     date: "", time: ""
   }
 ]
@@ -58,6 +62,7 @@ export default function Home() {
     const newToDo = {
       id: uid(),
       description: description,
+      checked: false,
       date, time
     }
 
@@ -70,12 +75,24 @@ export default function Home() {
       if(v.id === editedId){
         return {
           id: editedId,
+          checked: v.checked,
           description, date, time
         }
       } else return v
     }))
     setEditedId(undefined)
     clearInput()
+  }
+
+  const checkToDo = (id) => {
+    setToDo(toDos.map(v => {
+      if(v.id === id){
+        return {
+          ...v,
+          checked: !v.checked
+        }
+      } else return v
+    }))
   }
 
   const cancelUpdateToDo = () => {
@@ -150,6 +167,11 @@ export default function Home() {
       </div>
       <div className="flex flex-col">
         {toDos.map(v => <div key={v.id} className="flex flex-row gap-2 p-2">
+          <input 
+            type="checkbox"
+            value={v.checked}
+            onChange={checkToDo.bind(null, v.id)}
+          ></input>
           <div
             className="flex items-center"
           >{v.description}</div>
