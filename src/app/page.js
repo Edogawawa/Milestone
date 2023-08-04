@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
  * @typedef {{
  *  id: string
  *  description: string
+ *  date?: string
+ *  time?: string
  * }} ToDo
  */
 
@@ -15,15 +17,18 @@ const uid = function(){
 const rawToDos = [
   {
     id: uid(),
-    description: "Hello"
+    description: "Hello",
+    date: "", time: ""
   },
   {
     id: uid(),
-    description: "Hello 2"
+    description: "Hello 2",
+    date: "", time: ""
   },
   {
     id: uid(),
-    description: "Hello 3"
+    description: "Hello 3",
+    date: "", time: ""
   }
 ]
 
@@ -39,10 +44,14 @@ export default function Home() {
     const toDo = toDos.find(v => v.id === editedId)
     if(!toDo) return
     setDescription(toDo.description)
+    setDate(toDo.date)
+    setTime(toDo.time)
   }, [editedId])
 
   const clearInput = () => {
     setDescription("")
+    setDate("")
+    setTime("")
   }
 
   const createToDo = () => {
@@ -51,19 +60,27 @@ export default function Home() {
       return
     }
 
-    setToDo([...toDos, {
+    const newToDo = {
       id: uid(),
-      description: description
-    }])
+      description: description,
+      date, time
+    }
+
+    setToDo([...toDos, newToDo])
     clearInput()
   }
 
   const updateToDo = () => {
+    if (description === "") {
+      alert("description can't be empty")
+      return
+    }
+
     setToDo(toDos.map(v => {
       if(v.id === editedId){
         return {
           id: editedId,
-          description
+          description, date, time
         }
       } else return v
     }))
@@ -82,7 +99,7 @@ export default function Home() {
 
   return (
     <main className="p-3">
-      <div className="flex flex-row gap-1">
+      <div className="flex flex-col">
         <input
           type="text"
           value={description}
@@ -90,42 +107,57 @@ export default function Home() {
           onChange={e => setDescription(e.target.value) }
         ></input>
 
-        {/* <input
-          type="date"
-          className="text-black"
-          onChange={e => setDate(e.target.value)}
-        ></input>
-        <input
-          type="time"
-          className="text-black"
-          onChange={e => setTime(e.target.value)}
-        ></input>*/}
+        <div className="flex flex-row">
+          {/* Create clear button later */}
+          <div className="flex flex-row gap-3">
+            <input
+              type="time"
+              className="text-black"
+              value={time}
+              onChange={e => setTime(e.target.value)}
+            ></input>
 
-        {
-          editedId ? 
-          <div className="flex flex-row">
-            <button
-              onClick={updateToDo}
-            >Update</button>
-            <button
-              onClick={cancelUpdateToDo}
-            >Cancel</button>
-          </div> 
-          : 
-          <button
-            onClick={createToDo}
-          >Add</button>
-        }
+            <input
+              type="date"
+              className="text-black"
+              value={date}
+              onChange={e => setDate(e.target.value)}
+            ></input>
+          </div>
+
+          <div className="ml-auto flex flex-row gap-1">
+            {
+              editedId ?
+                <>
+                  <button
+                    onClick={updateToDo}
+                  >Update</button>
+                  <button
+                    onClick={cancelUpdateToDo}
+                  >Cancel</button>
+                </>
+                :
+                <button
+                  onClick={createToDo}
+                >Add</button>
+            }
+          </div>
+        </div>
       </div>
       <div className="flex flex-col">
-        {toDos.map(v => <div key={v.id} className="flex flex-row">
+        {toDos.map(v => <div key={v.id} className="flex flex-row gap-2 p-2">
           <div
             className="flex items-center"
           >{v.description}</div>
-          <div className="ml-auto">
-            <button onClick={() => setEditedId(v.id)}>Edit</button>
-            <button onClick={deleteToDo.bind(null, v.id)}>Delete</button>
-          </div>
+          <div className="flex items-center">{v.time+ " " + v.date}</div>
+          {
+            editedId !== v.id ?
+              <div className="ml-auto flex flex-row gap-1">
+                <button onClick={() => setEditedId(v.id)}>Edit</button>
+                <button onClick={deleteToDo.bind(null, v.id)}>Delete</button>
+              </div>
+              : null
+          }
         </div>)}
       </div>
     </main>

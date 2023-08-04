@@ -26,6 +26,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-button {
-  padding: 5px
+input {
+  outline: none;
 }
