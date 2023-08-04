@@ -55,11 +55,6 @@ export default function Home() {
   }
 
   const createToDo = () => {
-    if(description === ""){
-      alert("Description can't be empty")
-      return
-    }
-
     const newToDo = {
       id: uid(),
       description: description,
@@ -71,11 +66,6 @@ export default function Home() {
   }
 
   const updateToDo = () => {
-    if (description === "") {
-      alert("description can't be empty")
-      return
-    }
-
     setToDo(toDos.map(v => {
       if(v.id === editedId){
         return {
@@ -94,7 +84,8 @@ export default function Home() {
   }
 
   const deleteToDo = (id) => {
-    setToDo(toDos.filter(v => v.id !== id))
+    const c = confirm("Are you sure want to delete?")
+    if(c) setToDo(toDos.filter(v => v.id !== id))
   }
 
   return (
@@ -111,35 +102,48 @@ export default function Home() {
           {/* Create clear button later */}
           <div className="flex flex-row gap-3">
             <input
-              type="time"
-              className="text-black"
-              value={time}
-              onChange={e => setTime(e.target.value)}
-            ></input>
-
-            <input
               type="date"
               className="text-black"
               value={date}
               onChange={e => setDate(e.target.value)}
             ></input>
+
+            {
+              (date) ?
+                <input
+                  type="time"
+                  className="text-black"
+                  value={time}
+                  onChange={e => setTime(e.target.value)}
+                ></input> : null
+            }
+
+            {
+              (time || date) ?
+                <button
+                  onClick={() => { setTime(""); setDate("") }}
+                >Clear</button>
+                : null
+            }
           </div>
 
           <div className="ml-auto flex flex-row gap-1">
             {
-              editedId ?
-                <>
+              description ?
+                (editedId ?
                   <button
                     onClick={updateToDo}
                   >Update</button>
+                  :
                   <button
-                    onClick={cancelUpdateToDo}
-                  >Cancel</button>
-                </>
-                :
+                    onClick={createToDo}
+                  >Add</button>) : null
+            }
+            {
+              editedId ?
                 <button
-                  onClick={createToDo}
-                >Add</button>
+                  onClick={cancelUpdateToDo}
+                >Cancel</button> : null
             }
           </div>
         </div>
