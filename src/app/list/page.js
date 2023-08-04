@@ -30,7 +30,7 @@ const rawToDos = [
   },
   {
     id: uid(),
-    description: "Hello 3",
+    description: "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
     checked: true,
     date: "", time: ""
   }
@@ -165,27 +165,48 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col">
-        {toDos.map(v => <div key={v.id} className="flex flex-row gap-2 p-2">
-          <input 
-            type="checkbox"
-            value={v.checked}
-            onChange={checkToDo.bind(null, v.id)}
-          ></input>
-          <div
-            className="flex items-center"
-          >{v.description}</div>
-          <div className="flex items-center">{v.time+ " " + v.date}</div>
-          {
-            editedId !== v.id ?
-              <div className="ml-auto flex flex-row gap-1">
-                <button onClick={() => setEditedId(v.id)}>Edit</button>
-                <button onClick={deleteToDo.bind(null, v.id)}>Delete</button>
-              </div>
-              : null
-          }
-        </div>)}
-      </div>
+      <table className="w-full border-collapse">
+        <thead>
+          <tr className="w-full">
+            <th className="w-10"></th>
+            <th>Description</th>
+            <th className="w-40">Date and Time</th>
+            <th className="w-5"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {toDos.map(v => <tr key={v.id}>
+            <td className="text-center">
+              <input
+                type="checkbox"
+                value={v.checked}
+                onChange={checkToDo.bind(null, v.id)}
+              ></input>
+            </td>
+
+            <td>
+              <div
+                className="flex items-center break-all"
+              >{v.description}</div>
+            </td>
+
+            <td>
+              <div className="flex items-center">{v.time+ " " + v.date}</div>
+            </td>
+
+            <td>
+              {
+                editedId !== v.id ?
+                  <div className="ml-auto flex flex-row gap-1">
+                    <button onClick={() => setEditedId(v.id)}>✎</button>
+                    <button onClick={deleteToDo.bind(null, v.id)}>✖</button>
+                  </div>
+                  : null
+              }
+            </td>
+          </tr>)}
+        </tbody>
+      </table>
     </main>
   )
 }
