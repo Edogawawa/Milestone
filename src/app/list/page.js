@@ -37,10 +37,26 @@ const rawToDos = [
 ]
 
 export default function Home() {
+  const compareFn = (a, b) => {
+    if(a.date === "") return 1
+    if(b.date === "") return -1
+
+    if (a.date > b.date) return 1
+    else if (a.date < b.date) return -1
+    else {
+      if(a.time === "") return 1
+      else if(b.time === "") return -1
+
+      if(a.time > b.time) return 1
+      else if (a.time < b.time) return -1
+      else return 0
+    }
+  }
+
   const [description, setDescription] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
-  const [toDos, setToDo] = useState(rawToDos)
+  const [toDos, setToDo] = useState(rawToDos.sort(compareFn))
 
   const [editedId, setEditedId] = useState(undefined)
   useEffect(() => {
@@ -66,7 +82,7 @@ export default function Home() {
       date, time
     }
 
-    setToDo([...toDos, newToDo])
+    setToDo([...toDos, newToDo].sort(compareFn))
     clearInput()
   }
 
@@ -79,7 +95,7 @@ export default function Home() {
           description, date, time
         }
       } else return v
-    }))
+    }).sort(compareFn))
     setEditedId(undefined)
     clearInput()
   }
@@ -92,7 +108,7 @@ export default function Home() {
           checked: !v.checked
         }
       } else return v
-    }))
+    }).sort(compareFn))
   }
 
   const cancelUpdateToDo = () => {
@@ -106,7 +122,7 @@ export default function Home() {
   }
 
   return (
-    <main className="p-3">
+    <main className="flex flex-col gap-5 p-3">
       <div className="flex flex-col">
         <input
           type="text"
