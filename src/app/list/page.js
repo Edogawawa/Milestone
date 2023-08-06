@@ -15,16 +15,7 @@ const uid = function(){
 }
 
 export default function Home() {
-
-  const setData = useCallback((data) => {
-    localStorage.setItem("todo", JSON.stringify(data) || "[]")
-  }, [])
-
-  const getData = useCallback(() => {
-    return JSON.parse(localStorage.getItem("todo") || "[]")
-  }, [])
-
-  const [toDos, setToDo] = useState(getData())
+  const [toDos, setToDo] = useState([])
   const [search, setSearch] = useState("")
 
   const [category, setCategory] = useState([])
@@ -36,8 +27,13 @@ export default function Home() {
 
   const [editedId, setEditedId] = useState(undefined)
 
+  // First mount
   useEffect(() => {
-    setData(toDos)
+    setToDo(JSON.parse(localStorage.getItem("todo") || "[]"))
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("todo", JSON.stringify(toDos) || "[]")
   }, [toDos])
 
   const compareFn = useCallback((a, b) => {
