@@ -290,7 +290,7 @@ export default function Home() {
               <td className="text-center">
                 <input
                   type="checkbox"
-                  value={toDo.checked}
+                  checked={toDo.checked}
                   onChange={checkToDo.bind(null, toDo.id)}
                 ></input>
               </td>
@@ -318,7 +318,7 @@ export default function Home() {
               <td>
                 {
                   editedId !== toDo.id ?
-                    <div className="ml-auto flex flex-row gap-1">
+                    <div className="ml-auto flex flex-row gap-2">
                       <button onClick={() => setEditedId(toDo.id)}>✎</button>
                       <button onClick={deleteToDo.bind(null, toDo.id)}>✖</button>
                     </div>
