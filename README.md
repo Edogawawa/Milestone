@@ -8,7 +8,9 @@
 1. `npm i` untuk menginstall dependencies
 1. `npm run build` untuk membuat file yang akan dijalankan di browser
 1. `npm run start` untuk menjalankan server
-1. Buka browser, lalu masukan URL berdasarkan tampilan di terminal (contohnya `https://localhost:3000`)
+1. Buka browser, lalu masukan URL berdasarkan tampilan di terminal (contohnya `https://localhost:3000`)  
+
+[Demo](demo.mov)
 
 ## Identitas dan Kontribusi
 
