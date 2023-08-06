@@ -122,107 +122,127 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col gap-5 p-3">
-      <div className="flex flex-col">
+    <>
+      <nav
+        className="bg-blue-900 flex flex-row p-4"
+      >
+        <div
+          className="text-white text-2xl font-bold tracking-widest my-auto"
+        >
+          TIMEFY
+        </div>
         <input
           type="text"
-          value={description}
-          className="w-full text-black outline-none p-2"
-          onChange={e => setDescription(e.target.value) }
+          className="m-auto rounded-full px-4 p-1 w-1/2"
+          placeholder="🔎"
         ></input>
-
-        <div className="flex flex-row">
-          {/* Create clear button later */}
-          <div className="flex flex-row gap-3">
-            <input
-              type="date"
-              className="text-black"
-              value={date}
-              onChange={e => setDate(e.target.value)}
-            ></input>
-
-            {
-              (date) ?
-                <input
-                  type="time"
-                  className="text-black"
-                  value={time}
-                  onChange={e => setTime(e.target.value)}
-                ></input> : null
-            }
-
-            {
-              (time || date) ?
-                <button
-                  onClick={() => { setTime(""); setDate("") }}
-                >Clear</button>
-                : null
-            }
-          </div>
-
-          <div className="ml-auto flex flex-row gap-1">
-            {
-              description ?
-                (editedId ?
-                  <button
-                    onClick={updateToDo}
-                  >Update</button>
-                  :
-                  <button
-                    onClick={createToDo}
-                  >Add</button>) : null
-            }
-            {
-              editedId ?
-                <button
-                  onClick={cancelUpdateToDo}
-                >Cancel</button> : null
-            }
-          </div>
+        <div className="bg-white rounded-full aspect-square w-10 flex items-center justify-center">
+          <div>PP</div>
         </div>
-      </div>
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="w-full">
-            <th className="w-10"></th>
-            <th>Description</th>
-            <th className="w-40">Date and Time</th>
-            <th className="w-5"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {toDos.map(v => <tr key={v.id}>
-            <td className="text-center">
+
+      </nav>
+      <main className="flex flex-col gap-5 p-3">
+        <div className="flex flex-col">
+          <input
+            type="text"
+            value={description}
+            className="w-full text-black outline-none p-2"
+            onChange={e => setDescription(e.target.value)}
+          ></input>
+
+          <div className="flex flex-row">
+            {/* Create clear button later */}
+            <div className="flex flex-row gap-3">
               <input
-                type="checkbox"
-                value={v.checked}
-                onChange={checkToDo.bind(null, v.id)}
+                type="date"
+                className="text-black"
+                value={date}
+                onChange={e => setDate(e.target.value)}
               ></input>
-            </td>
 
-            <td>
-              <div
-                className="flex items-center break-all"
-              >{v.description}</div>
-            </td>
-
-            <td>
-              <div className="flex items-center">{v.time+ " " + v.date}</div>
-            </td>
-
-            <td>
               {
-                editedId !== v.id ?
-                  <div className="ml-auto flex flex-row gap-1">
-                    <button onClick={() => setEditedId(v.id)}>✎</button>
-                    <button onClick={deleteToDo.bind(null, v.id)}>✖</button>
-                  </div>
+                (date) ?
+                  <input
+                    type="time"
+                    className="text-black"
+                    value={time}
+                    onChange={e => setTime(e.target.value)}
+                  ></input> : null
+              }
+
+              {
+                (time || date) ?
+                  <button
+                    onClick={() => { setTime(""); setDate("") }}
+                  >Clear</button>
                   : null
               }
-            </td>
-          </tr>)}
-        </tbody>
-      </table>
-    </main>
+            </div>
+
+            <div className="ml-auto flex flex-row gap-1">
+              {
+                description ?
+                  (editedId ?
+                    <button
+                      onClick={updateToDo}
+                    >Update</button>
+                    :
+                    <button
+                      onClick={createToDo}
+                    >Add</button>) : null
+              }
+              {
+                editedId ?
+                  <button
+                    onClick={cancelUpdateToDo}
+                  >Cancel</button> : null
+              }
+            </div>
+          </div>
+        </div>
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="w-full">
+              <th className="w-10"></th>
+              <th>Description</th>
+              <th className="w-40">Date and Time</th>
+              <th className="w-5"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {toDos.map(v => <tr key={v.id}>
+              <td className="text-center">
+                <input
+                  type="checkbox"
+                  value={v.checked}
+                  onChange={checkToDo.bind(null, v.id)}
+                ></input>
+              </td>
+
+              <td>
+                <div
+                  className="flex items-center break-all"
+                >{v.description}</div>
+              </td>
+
+              <td>
+                <div className="flex items-center">{v.time + " " + v.date}</div>
+              </td>
+
+              <td>
+                {
+                  editedId !== v.id ?
+                    <div className="ml-auto flex flex-row gap-1">
+                      <button onClick={() => setEditedId(v.id)}>✎</button>
+                      <button onClick={deleteToDo.bind(null, v.id)}>✖</button>
+                    </div>
+                    : null
+                }
+              </td>
+            </tr>)}
+          </tbody>
+        </table>
+      </main>
+    </>
   )
 }
