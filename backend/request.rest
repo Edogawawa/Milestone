@@ -7,7 +7,7 @@ content-type: application/json
 {
     "taskName": "sdfsdffds",
     "checked":false,
-    "category":["multimemek", "asd"],
+    "category":["kvgyryi", "asd"],
     "date":"21-02-2023"
 }
 
