@@ -72,7 +72,7 @@ export default function Home() {
       return
     }
     if(category.includes(categoryInput)){
-      deleteCategory(category)
+      deleteCategory(categoryInput)
     } else {
       setCategory([...category, categoryInput])
     }
@@ -86,9 +86,9 @@ export default function Home() {
     setCategoryFilter(newSet)
   }, [categoryFilter])
 
-  const deleteCategory = useCallback(() => {
-    setCategory(category.filter(v => v !== categoryInput))
-  }, [category, categoryInput])
+  const deleteCategory = useCallback((c) => {
+    setCategory(category.filter(v => v !== c))
+  }, [category])
 
   const clearInput = useCallback(() => {
     setTaskName("")
@@ -209,7 +209,7 @@ export default function Home() {
                 return <button
                   key={c}
                   className="border-solid border-2 border-white px-1 rounded-md transition-all hover:bg-white"
-                  onClick={deleteCategory}
+                  onClick={deleteCategory.bind(null, c)}
                   tabIndex={-1}
                 >{c}</button>
               })
