@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 /**
  * @typedef {{
  *  id: string
@@ -39,6 +39,8 @@ const rawToDos = [
   }
 ]
 
+
+
 export default function Home() {
   const [search, setSearch] = useState("")
 
@@ -52,16 +54,16 @@ export default function Home() {
 
   const [editedId, setEditedId] = useState(undefined)
 
-  const compareFn = (a, b) => {
+  const compareFn = useCallback((a, b) => {
     if (a.date === "") return 1
     if (b.date === "") return -1
 
     if (a.date > b.date) return 1
     else if (a.date < b.date) return -1
     else return 0
-  }
+  }, [])
 
-  const filterFn = (v) => {
+  const filterFn = useCallback((v) => {
     const s = (v.taskName.toLowerCase()).includes(search)
     let c = true
 
@@ -71,7 +73,7 @@ export default function Home() {
     })
 
     return s && c
-  }
+  }, [categoryFilter, search])
   
   useEffect(() => {
     if(editedId === undefined) return
@@ -82,32 +84,32 @@ export default function Home() {
     setCategory(toDo.category)
   }, [editedId])
 
-  const addCategory = () => {
+  const addCategory = useCallback(() => {
     if(category.includes(categoryInput)){
       alert("Category can't be duplicated")
       return
     }
     setCategory([...category, categoryInput])
     setCategoryInput("")
-  }
+  }, [category, categoryInput])
 
-  const toggleCategoryFilter = (c) => {
+  const toggleCategoryFilter = useCallback((c) => {
     const newSet = new Set(categoryFilter)
     if(newSet.has(c)) newSet.delete(c)
     else newSet.add(c)
     setCategoryFilter(newSet)
-  }
+  }, [categoryFilter])
 
-  const deleteCategory = (c) => {
+  const deleteCategory = useCallback((c) => {
     setCategory(category.filter(v => v !== c))
-  }
+  }, [category])
 
-  const clearInput = () => {
+  const clearInput = useCallback(() => {
     setTaskName("")
     setDate("")
     setCategoryInput("")
     setCategory([])
-  }
+  }, [])
 
   const createToDo = () => {
     const newToDo = {
@@ -134,7 +136,7 @@ export default function Home() {
     clearInput()
   }
 
-  const checkToDo = (id) => {
+  const checkToDo = useCallback((id) => {
     setToDo(toDos.map(v => {
       if(v.id === id){
         return {
@@ -143,17 +145,17 @@ export default function Home() {
         }
       } else return v
     }))
-  }
+  }, [toDos])
 
-  const cancelUpdateToDo = () => {
+  const cancelUpdateToDo = useCallback(() => {
     setEditedId(undefined)
     clearInput()
-  }
+  }, [])
 
-  const deleteToDo = (id) => {
+  const deleteToDo = useCallback((id) => {
     const c = confirm("Are you sure want to delete?")
     if(c) setToDo(toDos.filter(v => v.id !== id))
-  }
+  }, [toDos])
 
   return (
     <>
