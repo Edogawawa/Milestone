@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .btn-wrapped{
+    padding: 2px 4px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    background-color: white;
+    border-color: rgb(180, 180, 180);
+    transition: all 0.5s;
+  }
+
+  .btn-wrapped:hover{
+    border-color: black;
+  }
+}
+
+input {
+  outline: none;
+}
+
+table, th, td {
+  border: 1px solid gray;
+}
+
+th, td{
+  padding: 0.3rem;
+}
