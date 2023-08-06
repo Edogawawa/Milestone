@@ -14,15 +14,16 @@ const uid = function(){
   return Date.now().toString(36) + Math.random().toString(36).substring(3);
 }
 
-function setData(data){
-  localStorage.setItem("todo", JSON.stringify(data) || "[]")
-}
-
-function getData(){
-  return JSON.parse(localStorage.getItem("todo") || "[]")
-}
-
 export default function Home() {
+
+  const setData = useCallback((data) => {
+    localStorage.setItem("todo", JSON.stringify(data) || "[]")
+  }, [])
+
+  const getData = useCallback(() => {
+    return JSON.parse(localStorage.getItem("todo") || "[]")
+  }, [])
+
   const [toDos, setToDo] = useState(getData())
   const [search, setSearch] = useState("")
 
