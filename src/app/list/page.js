@@ -3,10 +3,10 @@ import { useEffect, useState } from "react"
 /**
  * @typedef {{
  *  id: string
- *  description: string
+ *  taskName: string
  *  checked: boolean
+ *  category: string[]
  *  date?: string
- *  time?: string
  * }} ToDo
  */
 
@@ -14,25 +14,29 @@ const uid = function(){
   return Date.now().toString(36) + Math.random().toString(36).substring(3);
 }
 
+const edited = uid()
 /** @type {ToDo[]} */
 const rawToDos = [
   {
-    id: uid(),
-    description: "Hello",
+    id: edited,
+    taskName: "Hello",
     checked: false,
-    date: "", time: ""
+    category: ["Test", "Test 2"],
+    date: "2022-01-12"
   },
   {
     id: uid(),
-    description: "Hello 2",
+    taskName: "Hello 2",
     checked: false,
-    date: "", time: ""
+    category: [],
+    date: ""
   },
   {
     id: uid(),
-    description: "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+    taskName: "Hello 3",
     checked: true,
-    date: "", time: ""
+    category: [],
+    date: ""
   }
 ]
 
@@ -43,46 +47,37 @@ export default function Home() {
 
     if (a.date > b.date) return 1
     else if (a.date < b.date) return -1
-    else {
-      if(a.time === "") return 1
-      else if(b.time === "") return -1
-
-      if(a.time > b.time) return 1
-      else if (a.time < b.time) return -1
-      else return 0
-    }
+    else  return 0
   }
 
-  const [description, setDescription] = useState("")
+  const [category, setCategory] = useState([])
+  const [taskName, setTaskName] = useState("")
   const [date, setDate] = useState("")
-  const [time, setTime] = useState("")
-  const [toDos, setToDo] = useState(rawToDos.sort(compareFn))
+  const [toDos, setToDo] = useState(rawToDos)
 
-  const [editedId, setEditedId] = useState(undefined)
+  const [editedId, setEditedId] = useState(edited)
   useEffect(() => {
     if(editedId === undefined) return
     const toDo = toDos.find(v => v.id === editedId)
     if(!toDo) return
-    setDescription(toDo.description)
+    setTaskName(toDo.taskName)
     setDate(toDo.date)
-    setTime(toDo.time)
+    setCategory(toDo.category)
   }, [editedId])
 
   const clearInput = () => {
-    setDescription("")
+    setTaskName("")
     setDate("")
-    setTime("")
   }
 
   const createToDo = () => {
     const newToDo = {
       id: uid(),
-      description: description,
       checked: false,
-      date, time
+      taskName, category, date
     }
 
-    setToDo([...toDos, newToDo].sort(compareFn))
+    setToDo([...toDos, newToDo])
     clearInput()
   }
 
@@ -92,10 +87,10 @@ export default function Home() {
         return {
           id: editedId,
           checked: v.checked,
-          description, date, time
+          taskName, date, category
         }
       } else return v
-    }).sort(compareFn))
+    }))
     setEditedId(undefined)
     clearInput()
   }
@@ -108,7 +103,7 @@ export default function Home() {
           checked: !v.checked
         }
       } else return v
-    }).sort(compareFn))
+    }))
   }
 
   const cancelUpdateToDo = () => {
@@ -142,16 +137,24 @@ export default function Home() {
 
       </nav>
       <main className="flex flex-col gap-5 p-3">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <input
             type="text"
-            value={description}
-            className="w-full text-black outline-none p-2"
-            onChange={e => setDescription(e.target.value)}
+            value={taskName}
+            className="w-full text-black outline-none p-2 bg-blue-200 rounded-md text-lg"
+            onChange={e => setTaskName(e.target.value)}
           ></input>
 
+          <div className="flex flex-row bg-blue-300 rounded-md py-1 px-2 gap-2">
+            <button className="bg-white rounded-sm px-2">+</button>
+            <input
+              type="Text"
+              className="grow bg-inherit"
+            ></input>
+            <div>{category}</div>
+          </div>
+
           <div className="flex flex-row">
-            {/* Create clear button later */}
             <div className="flex flex-row gap-3">
               <input
                 type="date"
@@ -162,18 +165,8 @@ export default function Home() {
 
               {
                 (date) ?
-                  <input
-                    type="time"
-                    className="text-black"
-                    value={time}
-                    onChange={e => setTime(e.target.value)}
-                  ></input> : null
-              }
-
-              {
-                (time || date) ?
                   <button
-                    onClick={() => { setTime(""); setDate("") }}
+                    onClick={() => setDate("")}
                   >Clear</button>
                   : null
               }
@@ -181,7 +174,7 @@ export default function Home() {
 
             <div className="ml-auto flex flex-row gap-1">
               {
-                description ?
+                taskName ?
                   (editedId ?
                     <button
                       onClick={updateToDo}
@@ -204,37 +197,47 @@ export default function Home() {
           <thead>
             <tr className="w-full">
               <th className="w-10"></th>
-              <th>Description</th>
-              <th className="w-40">Date and Time</th>
+              <th>Task Name</th>
+              <th className="w-40">Date</th>
+              <th className="w-64">Category</th>
               <th className="w-5"></th>
             </tr>
           </thead>
           <tbody>
-            {toDos.map(v => <tr key={v.id}>
+            {toDos.sort(compareFn).map(toDo => <tr className="h-12" key={toDo.id}>
               <td className="text-center">
                 <input
                   type="checkbox"
-                  value={v.checked}
-                  onChange={checkToDo.bind(null, v.id)}
+                  value={toDo.checked}
+                  onChange={checkToDo.bind(null, toDo.id)}
                 ></input>
               </td>
 
               <td>
                 <div
                   className="flex items-center break-all"
-                >{v.description}</div>
+                >{toDo.taskName}</div>
               </td>
 
               <td>
-                <div className="flex items-center">{v.time + " " + v.date}</div>
+                <div className="flex items-center">{toDo.date ? (new Date(toDo.date).toLocaleDateString("gregory", { dateStyle: "medium" })) : ""}</div>
+              </td>
+
+              <td>
+                <div className="flex flex-row gap-2 text-sm">
+                  {toDo.category.map(c => <p 
+                    key={c}
+                    className="px-2 py-1 bg-blue-200 rounded-md"
+                    >{c}</p>)}
+                </div>
               </td>
 
               <td>
                 {
-                  editedId !== v.id ?
+                  editedId !== toDo.id ?
                     <div className="ml-auto flex flex-row gap-1">
-                      <button onClick={() => setEditedId(v.id)}>✎</button>
-                      <button onClick={deleteToDo.bind(null, v.id)}>✖</button>
+                      <button onClick={() => setEditedId(toDo.id)}>✎</button>
+                      <button onClick={deleteToDo.bind(null, toDo.id)}>✖</button>
                     </div>
                     : null
                 }
