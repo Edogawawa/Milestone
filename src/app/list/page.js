@@ -70,11 +70,15 @@ export default function Home() {
   }, [editedId])
 
   const addCategory = useCallback(() => {
-    if(category.includes(categoryInput)){
-      alert("Category can't be duplicated")
+    if(categoryInput === ""){
+      alert("Category can't be empty")
       return
     }
-    setCategory([...category, categoryInput])
+    if(category.includes(categoryInput)){
+      deleteCategory(category)
+    } else {
+      setCategory([...category, categoryInput])
+    }
     setCategoryInput("")
   }, [category, categoryInput])
 
@@ -85,9 +89,9 @@ export default function Home() {
     setCategoryFilter(newSet)
   }, [categoryFilter])
 
-  const deleteCategory = useCallback((c) => {
-    setCategory(category.filter(v => v !== c))
-  }, [category])
+  const deleteCategory = useCallback(() => {
+    setCategory(category.filter(v => v !== categoryInput))
+  }, [category, categoryInput])
 
   const clearInput = useCallback(() => {
     setTaskName("")
@@ -97,6 +101,11 @@ export default function Home() {
   }, [])
 
   const createToDo = () => {
+    if(categoryInput){
+      alert("Category not added, make sure to add before create")
+      return
+    }
+
     const newToDo = {
       id: uid(),
       checked: false,
@@ -108,6 +117,12 @@ export default function Home() {
   }
 
   const updateToDo = () => {
+    if (categoryInput) {
+      alert("Category not added, make sure to add before update")
+      return
+    }
+
+
     setToDo(toDos.map(v => {
       if(v.id === editedId){
         return {
@@ -178,6 +193,7 @@ export default function Home() {
             <button 
               onClick={addCategory}
               className="bg-blue-50 rounded-sm px-2"
+              tabIndex={-1}
             >+</button>
             <input
               type="Text"
@@ -196,7 +212,8 @@ export default function Home() {
                 return <button
                   key={c}
                   className="border-solid border-2 border-white px-1 rounded-md transition-all hover:bg-white"
-                  onClick={deleteCategory.bind(null, c)}
+                  onClick={deleteCategory}
+                  tabIndex={-1}
                 >{c}</button>
               })
             }</div>
@@ -242,6 +259,7 @@ export default function Home() {
                   >Cancel</button> : null
               }
             </div>
+
           </div>
         </div>
         <table className="w-full border-collapse">
@@ -255,7 +273,7 @@ export default function Home() {
                   <div>Category{categoryFilter.size === 0 ? null : ": "}</div>
                   {
                     categoryFilter.size === 0 ? null :
-                    <div className="flex align-middle justify-center">
+                      <div className="flex align-middle justify-center">
                       <div className="overflow-x-scroll flex flex-row gap-1 font-normal whitespace-nowrap text-[9px]">
                         {Array.from(categoryFilter).map(c => <button
                           key={c}
