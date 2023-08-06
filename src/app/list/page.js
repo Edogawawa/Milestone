@@ -182,8 +182,9 @@ export default function Home() {
           <input
             type="text"
             value={taskName}
-            className="w-full text-black outline-none p-2 bg-blue-200 rounded-md text-lg"
+            className="w-full text-black outline-none py-2 px-3 bg-blue-200 rounded-md text-lg placeholder:text-white"
             onChange={e => setTaskName(e.target.value)}
+            placeholder="New Task"
           ></input>
 
           <div className="flex flex-row bg-blue-300 rounded-md py-1 px-2 gap-2 whitespace-nowrap">
@@ -193,9 +194,10 @@ export default function Home() {
             >+</button>
             <input
               type="Text"
-              className="grow bg-inherit"
+              className="grow bg-inherit placeholder:text-gray-100"
               value={categoryInput}
               onChange={(e) => setCategoryInput(e.target.value)}
+              placeholder="Category"
               onKeyDown={(e) => {
                 if(e.code === "Enter") addCategory()
               }}
@@ -241,7 +243,7 @@ export default function Home() {
                     :
                     <button
                       onClick={createToDo}
-                    >Add</button>) : null
+                    >Create</button>) : null
               }
               {
                 editedId ?
