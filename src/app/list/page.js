@@ -14,14 +14,13 @@ const uid = function(){
   return Date.now().toString(36) + Math.random().toString(36).substring(3);
 }
 
-const edited = uid()
 /** @type {ToDo[]} */
 const rawToDos = [
   {
-    id: edited,
+    id: uid(),
     taskName: "Hello",
     checked: false,
-    category: ["Test", "Test 2"],
+    category: ["Test", "Test 2", "FDSF", "VREF", "FSDFSS", "VFVGEG"],
     date: "2022-01-12"
   },
   {
@@ -51,11 +50,12 @@ export default function Home() {
   }
 
   const [category, setCategory] = useState([])
+  const [categoryInput, setCategoryInput] = useState("")
   const [taskName, setTaskName] = useState("")
   const [date, setDate] = useState("")
   const [toDos, setToDo] = useState(rawToDos)
 
-  const [editedId, setEditedId] = useState(edited)
+  const [editedId, setEditedId] = useState(undefined)
   useEffect(() => {
     if(editedId === undefined) return
     const toDo = toDos.find(v => v.id === editedId)
@@ -65,9 +65,24 @@ export default function Home() {
     setCategory(toDo.category)
   }, [editedId])
 
+  const addCategory = () => {
+    if(category.includes(categoryInput)){
+      alert("Category can't be duplicated")
+      return
+    }
+    setCategory([...category, categoryInput])
+    setCategoryInput("")
+  }
+
+  const deleteCategory = (c) => {
+    setCategory(category.filter(v => v !== c))
+  }
+
   const clearInput = () => {
     setTaskName("")
     setDate("")
+    setCategoryInput("")
+    setCategory([])
   }
 
   const createToDo = () => {
@@ -136,7 +151,7 @@ export default function Home() {
         </div>
 
       </nav>
-      <main className="flex flex-col gap-5 p-3">
+      <main className="flex flex-col gap-5 p-3 m-auto max-w-[1300px]">
         <div className="flex flex-col gap-2">
           <input
             type="text"
@@ -145,13 +160,31 @@ export default function Home() {
             onChange={e => setTaskName(e.target.value)}
           ></input>
 
-          <div className="flex flex-row bg-blue-300 rounded-md py-1 px-2 gap-2">
-            <button className="bg-white rounded-sm px-2">+</button>
+          <div className="flex flex-row bg-blue-300 rounded-md py-1 px-2 gap-2 whitespace-nowrap">
+            <button 
+              onClick={addCategory}
+              className="bg-blue-50 rounded-sm px-2"
+            >+</button>
             <input
               type="Text"
               className="grow bg-inherit"
+              value={categoryInput}
+              onChange={(e) => setCategoryInput(e.target.value)}
+              onKeyDown={(e) => {
+                if(e.code === "Enter") addCategory()
+              }}
             ></input>
-            <div>{category}</div>
+            <div
+              className="flex flex-row gap-2 overflow-x-auto text-sm"
+            >{
+              category.map(c => {
+                return <button
+                  key={c}
+                  className="border-solid border-2 border-white px-1 rounded-md transition-all hover:bg-white"
+                  onClick={deleteCategory.bind(null, c)}
+                >{c}</button>
+              })
+            }</div>
           </div>
 
           <div className="flex flex-row">
@@ -210,6 +243,7 @@ export default function Home() {
                   type="checkbox"
                   value={toDo.checked}
                   onChange={checkToDo.bind(null, toDo.id)}
+                  className="non"
                 ></input>
               </td>
 
@@ -224,7 +258,7 @@ export default function Home() {
               </td>
 
               <td>
-                <div className="flex flex-row gap-2 text-sm">
+                <div className="flex flex-row gap-2 text-sm whitespace-nowrap max-w-xs overflow-auto">
                   {toDo.category.map(c => <p 
                     key={c}
                     className="px-2 py-1 bg-blue-200 rounded-md"
