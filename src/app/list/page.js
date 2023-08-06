@@ -219,7 +219,7 @@ export default function Home() {
             <div className="flex flex-row gap-3">
               <input
                 type="date"
-                className="text-black"
+                className="text-black cursor-pointer m-1"
                 value={date}
                 onChange={e => setDate(e.target.value)}
               ></input>
@@ -238,16 +238,19 @@ export default function Home() {
                 taskName ?
                   (editedId ?
                     <button
+                      className="btn-wrapped"
                       onClick={updateToDo}
                     >Update</button>
                     :
                     <button
+                      className="btn-wrapped"
                       onClick={createToDo}
                     >Create</button>) : null
               }
               {
                 editedId ?
                   <button
+                    className="btn-wrapped"
                     onClick={cancelUpdateToDo}
                   >Cancel</button> : null
               }
