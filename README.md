@@ -10,7 +10,7 @@
 1. `npm run start` untuk menjalankan server
 1. Buka browser, lalu masukan URL berdasarkan tampilan di terminal (contohnya `https://localhost:3000`)  
 
-[Demo](demo.mov)
+[Demo](demo.mp4)
 
 ## Identitas dan Kontribusi
 
