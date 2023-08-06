@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 /**
  * @typedef {{
  *  id: string
@@ -14,32 +14,8 @@ const uid = function(){
   return Date.now().toString(36) + Math.random().toString(36).substring(3);
 }
 
-/** @type {ToDo[]} */
-const rawToDos = [
-  {
-    id: uid(),
-    taskName: "Hello",
-    checked: false,
-    category: ["Test", "Test 2", "FDSF", "VREF", "FSDFSS", "VFVGEG"],
-    date: "2022-01-12"
-  },
-  {
-    id: uid(),
-    taskName: "Hello 2",
-    checked: false,
-    category: [],
-    date: ""
-  },
-  {
-    id: uid(),
-    taskName: "Hello 3",
-    checked: true,
-    category: [],
-    date: ""
-  }
-]
-
 export default function Home() {
+  const [toDos, setToDo] = useState([])
   const [search, setSearch] = useState("")
 
   const [category, setCategory] = useState([])
@@ -48,20 +24,28 @@ export default function Home() {
 
   const [taskName, setTaskName] = useState("")
   const [date, setDate] = useState("")
-  const [toDos, setToDo] = useState(rawToDos)
 
   const [editedId, setEditedId] = useState(undefined)
 
-  const compareFn = (a, b) => {
+  // First mount
+  useEffect(() => {
+    setToDo(JSON.parse(localStorage.getItem("todo") || "[]"))
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("todo", JSON.stringify(toDos) || "[]")
+  }, [toDos])
+
+  const compareFn = useCallback((a, b) => {
     if (a.date === "") return 1
     if (b.date === "") return -1
 
     if (a.date > b.date) return 1
     else if (a.date < b.date) return -1
     else return 0
-  }
+  }, [])
 
-  const filterFn = (v) => {
+  const filterFn = useCallback((v) => {
     const s = (v.taskName.toLowerCase()).includes(search)
     let c = true
 
@@ -71,7 +55,7 @@ export default function Home() {
     })
 
     return s && c
-  }
+  }, [categoryFilter, search])
   
   useEffect(() => {
     if(editedId === undefined) return
@@ -82,34 +66,43 @@ export default function Home() {
     setCategory(toDo.category)
   }, [editedId])
 
-  const addCategory = () => {
-    if(category.includes(categoryInput)){
-      alert("Category can't be duplicated")
+  const addCategory = useCallback(() => {
+    if(categoryInput === ""){
+      alert("Category can't be empty")
       return
     }
-    setCategory([...category, categoryInput])
+    if(category.includes(categoryInput)){
+      deleteCategory(category)
+    } else {
+      setCategory([...category, categoryInput])
+    }
     setCategoryInput("")
-  }
+  }, [category, categoryInput])
 
-  const toggleCategoryFilter = (c) => {
+  const toggleCategoryFilter = useCallback((c) => {
     const newSet = new Set(categoryFilter)
     if(newSet.has(c)) newSet.delete(c)
     else newSet.add(c)
     setCategoryFilter(newSet)
-  }
+  }, [categoryFilter])
 
-  const deleteCategory = (c) => {
-    setCategory(category.filter(v => v !== c))
-  }
+  const deleteCategory = useCallback(() => {
+    setCategory(category.filter(v => v !== categoryInput))
+  }, [category, categoryInput])
 
-  const clearInput = () => {
+  const clearInput = useCallback(() => {
     setTaskName("")
     setDate("")
     setCategoryInput("")
     setCategory([])
-  }
+  }, [])
 
   const createToDo = () => {
+    if(categoryInput){
+      alert("Category not added, make sure to add before create")
+      return
+    }
+
     const newToDo = {
       id: uid(),
       checked: false,
@@ -121,6 +114,12 @@ export default function Home() {
   }
 
   const updateToDo = () => {
+    if (categoryInput) {
+      alert("Category not added, make sure to add before update")
+      return
+    }
+
+
     setToDo(toDos.map(v => {
       if(v.id === editedId){
         return {
@@ -134,7 +133,7 @@ export default function Home() {
     clearInput()
   }
 
-  const checkToDo = (id) => {
+  const checkToDo = useCallback((id) => {
     setToDo(toDos.map(v => {
       if(v.id === id){
         return {
@@ -143,17 +142,17 @@ export default function Home() {
         }
       } else return v
     }))
-  }
+  }, [toDos])
 
-  const cancelUpdateToDo = () => {
+  const cancelUpdateToDo = useCallback(() => {
     setEditedId(undefined)
     clearInput()
-  }
+  }, [])
 
-  const deleteToDo = (id) => {
+  const deleteToDo = useCallback((id) => {
     const c = confirm("Are you sure want to delete?")
     if(c) setToDo(toDos.filter(v => v.id !== id))
-  }
+  }, [toDos])
 
   return (
     <>
@@ -191,6 +190,7 @@ export default function Home() {
             <button 
               onClick={addCategory}
               className="bg-blue-50 rounded-sm px-2"
+              tabIndex={-1}
             >+</button>
             <input
               type="Text"
@@ -209,7 +209,8 @@ export default function Home() {
                 return <button
                   key={c}
                   className="border-solid border-2 border-white px-1 rounded-md transition-all hover:bg-white"
-                  onClick={deleteCategory.bind(null, c)}
+                  onClick={deleteCategory}
+                  tabIndex={-1}
                 >{c}</button>
               })
             }</div>
@@ -255,6 +256,7 @@ export default function Home() {
                   >Cancel</button> : null
               }
             </div>
+
           </div>
         </div>
         <table className="w-full border-collapse">
@@ -264,17 +266,20 @@ export default function Home() {
               <th>Task Name</th>
               <th className="w-40">Date</th>
               <th className="w-60">
-                <div className="flex flex-col">
-                  <p>Category</p>
-                  <div className="w-60 flex align-middle justify-center">
-                    <div className="overflow-x-scroll flex flex-row gap-1 font-normal whitespace-nowrap text-xs">
-                      {Array.from(categoryFilter).map(c => <button
-                        key={c}
-                        className="bg-blue-200 p-[5px] rounded-[5px]"
-                        onClick={toggleCategoryFilter.bind(null, c)}
-                      >{c}</button>)}
+                <div className={`flex flex-row gap-1 ${categoryFilter.size === 0 ? "justify-center" : ""}`}>
+                  <div>Category{categoryFilter.size === 0 ? null : ": "}</div>
+                  {
+                    categoryFilter.size === 0 ? null :
+                      <div className="flex align-middle justify-center">
+                      <div className="overflow-x-scroll flex flex-row gap-1 font-normal whitespace-nowrap text-[9px]">
+                        {Array.from(categoryFilter).map(c => <button
+                          key={c}
+                          className="bg-blue-200 p-[5px] rounded-[5px]"
+                          onClick={toggleCategoryFilter.bind(null, c)}
+                        >{c}</button>)}
+                      </div>
                     </div>
-                  </div>
+                  }
                 </div>
               </th>
               <th className="w-10"></th>
@@ -285,7 +290,7 @@ export default function Home() {
               <td className="text-center">
                 <input
                   type="checkbox"
-                  value={toDo.checked}
+                  checked={toDo.checked}
                   onChange={checkToDo.bind(null, toDo.id)}
                 ></input>
               </td>
@@ -313,7 +318,7 @@ export default function Home() {
               <td>
                 {
                   editedId !== toDo.id ?
-                    <div className="ml-auto flex flex-row gap-1">
+                    <div className="ml-auto flex flex-row gap-2">
                       <button onClick={() => setEditedId(toDo.id)}>✎</button>
                       <button onClick={deleteToDo.bind(null, toDo.id)}>✖</button>
                     </div>
