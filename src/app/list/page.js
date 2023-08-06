@@ -251,17 +251,20 @@ export default function Home() {
               <th>Task Name</th>
               <th className="w-40">Date</th>
               <th className="w-60">
-                <div className="flex flex-col">
-                  <p>Category</p>
-                  <div className="w-60 flex align-middle justify-center">
-                    <div className="overflow-x-scroll flex flex-row gap-1 font-normal whitespace-nowrap text-xs">
-                      {Array.from(categoryFilter).map(c => <button
-                        key={c}
-                        className="bg-blue-200 p-[5px] rounded-[5px]"
-                        onClick={toggleCategoryFilter.bind(null, c)}
-                      >{c}</button>)}
+                <div className={`flex flex-row gap-1 ${categoryFilter.size === 0 ? "justify-center" : ""}`}>
+                  <div>Category{categoryFilter.size === 0 ? null : ": "}</div>
+                  {
+                    categoryFilter.size === 0 ? null :
+                    <div className="flex align-middle justify-center">
+                      <div className="overflow-x-scroll flex flex-row gap-1 font-normal whitespace-nowrap text-[9px]">
+                        {Array.from(categoryFilter).map(c => <button
+                          key={c}
+                          className="bg-blue-200 p-[5px] rounded-[5px]"
+                          onClick={toggleCategoryFilter.bind(null, c)}
+                        >{c}</button>)}
+                      </div>
                     </div>
-                  </div>
+                  }
                 </div>
               </th>
               <th className="w-10"></th>
