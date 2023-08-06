@@ -40,22 +40,39 @@ const rawToDos = [
 ]
 
 export default function Home() {
-  const compareFn = (a, b) => {
-    if(a.date === "") return 1
-    if(b.date === "") return -1
-
-    if (a.date > b.date) return 1
-    else if (a.date < b.date) return -1
-    else  return 0
-  }
+  const [search, setSearch] = useState("")
 
   const [category, setCategory] = useState([])
   const [categoryInput, setCategoryInput] = useState("")
+  const [categoryFilter, setCategoryFilter] = useState(new Set())
+
   const [taskName, setTaskName] = useState("")
   const [date, setDate] = useState("")
   const [toDos, setToDo] = useState(rawToDos)
 
   const [editedId, setEditedId] = useState(undefined)
+
+  const compareFn = (a, b) => {
+    if (a.date === "") return 1
+    if (b.date === "") return -1
+
+    if (a.date > b.date) return 1
+    else if (a.date < b.date) return -1
+    else return 0
+  }
+
+  const filterFn = (v) => {
+    const s = (v.taskName.toLowerCase()).includes(search)
+    let c = true
+
+    const cs = new Set(v.category)
+    categoryFilter.forEach(v => {
+      if(!cs.has(v)) c = false
+    })
+
+    return s && c
+  }
+  
   useEffect(() => {
     if(editedId === undefined) return
     const toDo = toDos.find(v => v.id === editedId)
@@ -72,6 +89,13 @@ export default function Home() {
     }
     setCategory([...category, categoryInput])
     setCategoryInput("")
+  }
+
+  const toggleCategoryFilter = (c) => {
+    const newSet = new Set(categoryFilter)
+    if(newSet.has(c)) newSet.delete(c)
+    else newSet.add(c)
+    setCategoryFilter(newSet)
   }
 
   const deleteCategory = (c) => {
@@ -145,6 +169,8 @@ export default function Home() {
           type="text"
           className="m-auto rounded-full px-4 p-1 w-1/2"
           placeholder="🔎"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         ></input>
         <div className="bg-white rounded-full aspect-square w-10 flex items-center justify-center">
           <div>PP</div>
@@ -232,18 +258,30 @@ export default function Home() {
               <th className="w-10"></th>
               <th>Task Name</th>
               <th className="w-40">Date</th>
-              <th className="w-64">Category</th>
-              <th className="w-5"></th>
+              <th className="w-60">
+                <div className="flex flex-col">
+                  <p>Category</p>
+                  <div className="w-60 flex align-middle justify-center">
+                    <div className="overflow-x-scroll flex flex-row gap-1 font-normal whitespace-nowrap text-xs">
+                      {Array.from(categoryFilter).map(c => <button
+                        key={c}
+                        className="bg-blue-200 p-[5px] rounded-[5px]"
+                        onClick={toggleCategoryFilter.bind(null, c)}
+                      >{c}</button>)}
+                    </div>
+                  </div>
+                </div>
+              </th>
+              <th className="w-10"></th>
             </tr>
           </thead>
           <tbody>
-            {toDos.sort(compareFn).map(toDo => <tr className="h-12" key={toDo.id}>
+            {toDos.filter(filterFn).sort(compareFn).map(toDo => <tr className="h-12" key={toDo.id}>
               <td className="text-center">
                 <input
                   type="checkbox"
                   value={toDo.checked}
                   onChange={checkToDo.bind(null, toDo.id)}
-                  className="non"
                 ></input>
               </td>
 
@@ -258,11 +296,12 @@ export default function Home() {
               </td>
 
               <td>
-                <div className="flex flex-row gap-2 text-sm whitespace-nowrap max-w-xs overflow-auto">
-                  {toDo.category.map(c => <p 
+                <div className="flex flex-row gap-2 text-sm whitespace-nowrap overflow-auto w-60">
+                  {toDo.category.map(c => categoryFilter.has(c) ? null : <button 
                     key={c}
                     className="px-2 py-1 bg-blue-200 rounded-md"
-                    >{c}</p>)}
+                    onClick={toggleCategoryFilter.bind(null, c)}
+                    >{c}</button>)}
                 </div>
               </td>
 
