@@ -14,34 +14,16 @@ const uid = function(){
   return Date.now().toString(36) + Math.random().toString(36).substring(3);
 }
 
-/** @type {ToDo[]} */
-const rawToDos = [
-  {
-    id: uid(),
-    taskName: "Hello",
-    checked: false,
-    category: ["Test", "Test 2", "FDSF", "VREF", "FSDFSS", "VFVGEG"],
-    date: "2022-01-12"
-  },
-  {
-    id: uid(),
-    taskName: "Hello 2",
-    checked: false,
-    category: [],
-    date: ""
-  },
-  {
-    id: uid(),
-    taskName: "Hello 3",
-    checked: true,
-    category: [],
-    date: ""
-  }
-]
+function setData(data){
+  localStorage.setItem("todo", JSON.stringify(data) || "[]")
+}
 
-
+function getData(){
+  return JSON.parse(localStorage.getItem("todo") || "[]")
+}
 
 export default function Home() {
+  const [toDos, setToDo] = useState(getData())
   const [search, setSearch] = useState("")
 
   const [category, setCategory] = useState([])
@@ -50,9 +32,12 @@ export default function Home() {
 
   const [taskName, setTaskName] = useState("")
   const [date, setDate] = useState("")
-  const [toDos, setToDo] = useState(rawToDos)
 
   const [editedId, setEditedId] = useState(undefined)
+
+  useEffect(() => {
+    setData(toDos)
+  }, [toDos])
 
   const compareFn = useCallback((a, b) => {
     if (a.date === "") return 1
