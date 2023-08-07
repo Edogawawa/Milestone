@@ -64,7 +64,7 @@ Seluruh data yang dibuat dalam aplikasi ini disimpan menggunakan `localStorage`,
 | Hayya Zuhailii Kinasih 		    | 19622081 |        |
 | Eduardus Alvito Kristiadi 	    | 19622112 | Backend |
 | Ahmad Hasan Albana 			    | 19622116 |    Styling Tabel    |
-| Irfan Sidiq Permana 			    | 19622130 |        |
+| Irfan Sidiq Permana 			    | 19622130 |    Frontend landing page    |
 | Satria Wisnu Wibowo 			    | 19622145 |    Manfaat dari solusi    |
 | Muhammad Atpur Rafif 			    | 19622222 | Front-end |
 | Ahmad Fawwazi 				    | 19622234 |     Deskripsi masalah dan solusi   |
