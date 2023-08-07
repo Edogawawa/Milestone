@@ -8,13 +8,15 @@ Mahasiswa seringkali mengalami kesulitan dalam mengelola prioritas tugas, sehing
 Solusi yang diusulkan adalah pengembangan website "Timefy" yang dapat membantu mahasiswa dalam mengelola waktu dan tugas-tugas yang dimiliki secara lebih efektif. Website menyajikan alat praktis untuk mengatur, mengelompokkan, dan memprioritaskan tugas-tugas. Diharapkan dengan adanya website ini, mahasiswa bisa lebih menyadari tugas-tugas yang harus diselesaikan dan bisa mengatur prioritas dengan lebih baik. Fitur-fitur seperti pengingat, deadline, dan pengelompokkan berdasarkan kategori tugas akan membantu mahasiswa menjaga konsistensi dalam menjalani tugas-tugas akademis dan kegiatan lainnya serta meningkatkan pemanfaatan waktu secara lebih baik.
 
 ## Manfaat dari Solusi
-1. Mengatur waktu secara efektif.
-2. Mengklasifikasikan berbagai kategori dari pekerjaan atau tugas.
+1. Mengatur waktu secara efektif dan meningkatkan disiplin diri.
+2. Mengklasifikasikan berbagai kategori dari pekerjaan atau tugas dan perencanaan jangka panjang.
 3. Mengingatkan user akan tenggat waktu/deadline.
 4. Menghindari prokrastinasi.
 5. Meningkatkan fokus.
 6. Menghindari dari lupa akan tugas yang ada.
 7. Menghilangkan rasa cemas akibat lupa sudah mengerjakan tugas.
+8. Memperjelas prioritas.
+9. Meningkatkan produktivitas.
 
 ## Requirement
 1. node.js > v20.0.0
@@ -55,7 +57,7 @@ Seluruh data yang dibuat dalam aplikasi ini disimpan menggunakan `localStorage`,
 
 | Nama | NIM | Kontribusi |
 | --- | --- | --- |
-| Ahmad Habibie Marjan 			    | 19622003 |        |
+| Ahmad Habibie Marjan 			    | 19622003 |    Manfaat dari solusi    |
 | Shazya Audrea Taufik 			    | 19622016 |    Manfaat dari solusi dan Upload Proposal    |
 | Habib Akhmad Al Farisi 		    | 19622017 |    Solusi dan Manfaat dari solusi    |
 | Rici Trisna Putra 			    | 19622061 |    Membuat high fidelity prototype di Figma    |
