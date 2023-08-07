@@ -26,7 +26,26 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 1. Buka browser, lalu masukan URL berdasarkan tampilan di terminal (contohnya `https://localhost:3000`)  
 
 [Figma](https://www.figma.com/file/jmmAqgzUTG5NmKzX7ZpkW8/Milestone-Kelompok-12?type=design&node-id=0-1&mode=design&t=e4K8Hk5dBHg4tCyX-0)
-[Demo](demo.mp4)
+
+## Demo
+
+### Create Task
+![Create demo](demo/create.gif)
+
+### Update Task
+![Update demo](demo/update.gif)
+
+### Delete Task
+![Delete demo](demo/delete.gif)
+
+### Search Task
+![Search demo](demo/search.gif)
+
+### Filter Task
+![Filter demo](demo/filter.gif)
+
+### Date Task
+![Date demo](demo/date.gif)
 
 ## Identitas dan Kontribusi
 
