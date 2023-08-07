@@ -1,7 +1,11 @@
+# Milestone02
+> Milestone 2 kelompok 12
 ## Deskripsi Masalah
-Testting
 
+Mahasiswa seringkali mengalami kesulitan dalam mengelola prioritas tugas, sehingga dapat mengakibatkan keterlambatan dalam menyelesaikan tugas, peningkatan stres, dan penurunan produktivitas. Ketidakmampuan dalam mengatur waktu dengan baik juga bisa menyebabkan tumpang tindih antara tugas akademis dan kegiatan sosial/ekstrakurikuler, mengakibatkan ketidakseimbangan dalam menjalani peran sebagai mahasiswa.
 
+## Solusi
+Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu mahasiswa dalam mengelola waktu dan tugas-tugas mereka dengan lebih efektif. Aplikasi ini akan memberikan alat praktis untuk mengatur, mengelompokkan, dan memprioritaskan tugas-tugas. Dengan adanya aplikasi ini, mahasiswa akan dapat dengan jelas melihat tugas-tugas yang harus diselesaikan dan mengatur prioritas dengan lebih baik. Fitur-fitur seperti pengingat, deadline, dan pengelompokkan berdasarkan kategori tugas akan membantu mahasiswa menjaga konsistensi dalam menjalani tugas-tugas akademis dan kegiatan lainnya.
 
 
 
@@ -31,6 +35,6 @@ Testting
 | Irfan Sidiq Permana 			    | 19622130 |        |
 | Satria Wisnu Wibowo 			    | 19622145 |        |
 | Muhammad Atpur Rafif 			    | 19622222 | Front-end |
-| Ahmad Fawwazi 				    | 19622234 |        |
+| Ahmad Fawwazi 				    | 19622234 |     Deskripsi masalah dan solusi   |
 | Nathaniel Liady 				    | 19622284 |        |
 | Lina Azizah Ramadhani Hardyanti 	| 19622286 |        |
