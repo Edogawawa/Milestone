@@ -7,6 +7,10 @@ Mahasiswa seringkali mengalami kesulitan dalam mengelola prioritas tugas, sehing
 ## Solusi
 Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu mahasiswa dalam mengelola waktu dan tugas-tugas mereka dengan lebih efektif. Aplikasi ini akan memberikan alat praktis untuk mengatur, mengelompokkan, dan memprioritaskan tugas-tugas. Dengan adanya aplikasi ini, mahasiswa akan dapat dengan jelas melihat tugas-tugas yang harus diselesaikan dan mengatur prioritas dengan lebih baik. Fitur-fitur seperti pengingat, deadline, dan pengelompokkan berdasarkan kategori tugas akan membantu mahasiswa menjaga konsistensi dalam menjalani tugas-tugas akademis dan kegiatan lainnya.
 
+## Manfaat dari Solusi
+1. Membagi waktu dengan efektif.
+2. Mengklasifikasikan berbagai kategori dari pekerjaan atau tugas.
+3. Mengingatkan user akan tenggat waktu/deadline. 
 
 
 ## Requirement
