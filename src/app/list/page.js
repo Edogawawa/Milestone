@@ -187,11 +187,6 @@ export default function Home() {
           ></input>
 
           <div className="flex flex-row bg-blue-300 rounded-md py-1 px-2 gap-2 whitespace-nowrap">
-            <button 
-              onClick={addCategory}
-              className="bg-blue-50 rounded-sm px-2"
-              tabIndex={-1}
-            >+</button>
             <input
               type="Text"
               className="grow bg-inherit placeholder:text-gray-100"
@@ -199,21 +194,29 @@ export default function Home() {
               onChange={(e) => setCategoryInput(e.target.value)}
               placeholder="Category"
               onKeyDown={(e) => {
-                if(e.code === "Enter") addCategory()
+                if (e.code === "Enter") addCategory()
               }}
             ></input>
+            {
+              categoryInput ?
+              <button
+                onClick={addCategory}
+                className="bg-blue-50 rounded-sm px-2"
+                tabIndex={-1}
+              >+</button> : null
+            }
             <div
               className="flex flex-row gap-2 overflow-x-auto text-sm"
             >{
-              category.map(c => {
-                return <button
-                  key={c}
-                  className="border-solid border-2 border-white px-1 rounded-md transition-all hover:bg-white"
-                  onClick={deleteCategory.bind(null, c)}
-                  tabIndex={-1}
-                >{c}</button>
-              })
-            }</div>
+                category.map(c => {
+                  return <button
+                    key={c}
+                    className="border-solid border-2 border-white px-1 rounded-md transition-all hover:bg-white"
+                    onClick={deleteCategory.bind(null, c)}
+                    tabIndex={-1}
+                  >{c}</button>
+                })
+              }</div>
           </div>
 
           <div className="flex flex-row">
