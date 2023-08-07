@@ -68,6 +68,6 @@ Seluruh data yang dibuat dalam aplikasi ini disimpan menggunakan `localStorage`,
 | Satria Wisnu Wibowo 			    | 19622145 |    Manfaat dari solusi    |
 | Muhammad Atpur Rafif 			    | 19622222 | Front-end |
 | Ahmad Fawwazi 				    | 19622234 |     Deskripsi masalah dan solusi   |
-| Nathaniel Liady 				    | 19622284 |        |
+| Nathaniel Liady 				    | 19622284 |   Merumuskan ide-ide dan membantu Frontend   |
 | Lina Azizah Ramadhani Hardyanti 	| 19622286 |    Membuat high fidelity prototype di Figma    |
 
