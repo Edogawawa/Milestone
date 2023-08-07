@@ -32,8 +32,8 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 | Nama | NIM | Kontribusi |
 | --- | --- | --- |
 | Ahmad Habibie Marjan 			    | 19622003 |        |
-| Shazya Audrea Taufik 			    | 19622016 |        |
-| Habib Akhmad Al Farisi 		    | 19622017 |    Manfaat dari solusi dan Upload Proposal    |
+| Shazya Audrea Taufik 			    | 19622016 |    Manfaat dari solusi dan Upload Proposal    |
+| Habib Akhmad Al Farisi 		    | 19622017 |        |
 | Rici Trisna Putra 			    | 19622061 |        |
 | Hayya Zuhailii Kinasih 		    | 19622081 |        |
 | Eduardus Alvito Kristiadi 	    | 19622112 | Backend |
