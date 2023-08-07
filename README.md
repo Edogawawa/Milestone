@@ -25,6 +25,7 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 1. `npm run start` untuk menjalankan server
 1. Buka browser, lalu masukan URL berdasarkan tampilan di terminal (contohnya `https://localhost:3000`)  
 
+[Figma](https://www.figma.com/file/jmmAqgzUTG5NmKzX7ZpkW8/Milestone-Kelompok-12?type=design&node-id=0-1&mode=design&t=e4K8Hk5dBHg4tCyX-0)
 [Demo](demo.mp4)
 
 ## Identitas dan Kontribusi
@@ -34,7 +35,7 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 | Ahmad Habibie Marjan 			    | 19622003 |        |
 | Shazya Audrea Taufik 			    | 19622016 |    Manfaat dari solusi dan Upload Proposal    |
 | Habib Akhmad Al Farisi 		    | 19622017 |        |
-| Rici Trisna Putra 			    | 19622061 |        |
+| Rici Trisna Putra 			    | 19622061 |    Membuat high fidelity prototype di Figma    |
 | Hayya Zuhailii Kinasih 		    | 19622081 |        |
 | Eduardus Alvito Kristiadi 	    | 19622112 | Backend |
 | Ahmad Hasan Albana 			    | 19622116 |    Styling Tabel    |
@@ -43,4 +44,4 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 | Muhammad Atpur Rafif 			    | 19622222 | Front-end |
 | Ahmad Fawwazi 				    | 19622234 |     Deskripsi masalah dan solusi   |
 | Nathaniel Liady 				    | 19622284 |        |
-| Lina Azizah Ramadhani Hardyanti 	| 19622286 |        |
+| Lina Azizah Ramadhani Hardyanti 	| 19622286 |    Membuat high fidelity prototype di Figma    |
