@@ -10,7 +10,9 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 ## Manfaat dari Solusi
 1. Membagi waktu dengan efektif.
 2. Mengklasifikasikan berbagai kategori dari pekerjaan atau tugas.
-3. Mengingatkan user akan tenggat waktu/deadline. 
+3. Mengingatkan user akan tenggat waktu/deadline.
+4. Menghindari prokrastinasi
+5. Meningkatkan fokus
 
 
 ## Requirement
@@ -37,7 +39,7 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 | Eduardus Alvito Kristiadi 	    | 19622112 | Backend |
 | Ahmad Hasan Albana 			    | 19622116 |        |
 | Irfan Sidiq Permana 			    | 19622130 |        |
-| Satria Wisnu Wibowo 			    | 19622145 |        |
+| Satria Wisnu Wibowo 			    | 19622145 |    Manfaat dari solusi    |
 | Muhammad Atpur Rafif 			    | 19622222 | Front-end |
 | Ahmad Fawwazi 				    | 19622234 |     Deskripsi masalah dan solusi   |
 | Nathaniel Liady 				    | 19622284 |        |
