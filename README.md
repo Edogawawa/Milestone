@@ -30,7 +30,7 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 | Habib Akhmad Al Farisi 		    | 19622017 |        |
 | Rici Trisna Putra 			    | 19622061 |        |
 | Hayya Zuhailii Kinasih 		    | 19622081 |        |
-| Eduardus Alvito Kristiadi 	    | 19622112 |        |
+| Eduardus Alvito Kristiadi 	    | 19622112 | Backend |
 | Ahmad Hasan Albana 			    | 19622116 |        |
 | Irfan Sidiq Permana 			    | 19622130 |        |
 | Satria Wisnu Wibowo 			    | 19622145 |        |
