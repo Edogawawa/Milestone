@@ -13,7 +13,7 @@ Solusi yang diusulkan adalah pengembangan website "Timefy" yang dapat membantu m
 3. Mengingatkan user akan tenggat waktu/deadline.
 4. Menghindari prokrastinasi.
 5. Meningkatkan fokus.
-6. Menghindari dari lupa akan tugas.
+6. Menghindari dari lupa akan tugas yang ada.
 7. Menghilangkan rasa cemas akibat lupa sudah mengerjakan tugas.
 
 ## Requirement
