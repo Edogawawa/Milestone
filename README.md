@@ -17,6 +17,9 @@ Solusi yang diusulkan adalah pengembangan website "Timefy" yang dapat membantu m
 7. Menghilangkan rasa cemas akibat lupa sudah mengerjakan tugas.
 8. Memperjelas prioritas.
 9. Meningkatkan produktivitas.
+10. Mengurangi stres.
+11. Melacak progress suatu tugas.
+12. Menghindari kewalahan karena tugas menumpuk.
 
 ## Requirement
 1. node.js > v20.0.0
@@ -61,7 +64,7 @@ Seluruh data yang dibuat dalam aplikasi ini disimpan menggunakan `localStorage`,
 | Shazya Audrea Taufik 			    | 19622016 |    Manfaat dari solusi dan Upload Proposal    |
 | Habib Akhmad Al Farisi 		    | 19622017 |    Solusi dan Manfaat dari solusi    |
 | Rici Trisna Putra 			    | 19622061 |    Membuat high fidelity prototype di Figma    |
-| Hayya Zuhailii Kinasih 		    | 19622081 |        |
+| Hayya Zuhailii Kinasih 		    | 19622081 |    Manfaat dari solusi    |
 | Eduardus Alvito Kristiadi 	    | 19622112 | Backend |
 | Ahmad Hasan Albana 			    | 19622116 |    Styling Tabel    |
 | Irfan Sidiq Permana 			    | 19622130 |    Membuat desain awal proyek    |
