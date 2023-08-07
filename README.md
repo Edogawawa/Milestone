@@ -1,5 +1,5 @@
-# Milestone02
-> Milestone 2 kelompok 12
+# Milestone 2
+
 ## Deskripsi Masalah
 
 Mahasiswa seringkali mengalami kesulitan dalam mengelola prioritas tugas, sehingga dapat mengakibatkan keterlambatan dalam menyelesaikan tugas, peningkatan stres, dan penurunan produktivitas. Ketidakmampuan dalam mengatur waktu dengan baik juga bisa menyebabkan tumpang tindih antara tugas akademis dan kegiatan sosial/ekstrakurikuler, mengakibatkan ketidakseimbangan dalam menjalani peran sebagai mahasiswa.
@@ -13,7 +13,6 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 3. Mengingatkan user akan tenggat waktu/deadline.
 4. Menghindari prokrastinasi
 5. Meningkatkan fokus
-
 
 ## Requirement
 1. node.js > v20.0.0
@@ -46,6 +45,9 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 
 ### Date Task
 ![Date demo](demo/date.gif)
+
+### Save Data
+Seluruh data yang dibuat dalam aplikasi ini disimpan menggunakan `localStorage`, yang artinya tetap berada dalam browser client.
 
 ## Identitas dan Kontribusi
 
