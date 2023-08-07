@@ -37,7 +37,7 @@ Solusi yang diusulkan adalah pengembangan aplikasi "Timefy" yang dapat membantu 
 | Rici Trisna Putra 			    | 19622061 |        |
 | Hayya Zuhailii Kinasih 		    | 19622081 |        |
 | Eduardus Alvito Kristiadi 	    | 19622112 | Backend |
-| Ahmad Hasan Albana 			    | 19622116 |        |
+| Ahmad Hasan Albana 			    | 19622116 |    Styling Tabel    |
 | Irfan Sidiq Permana 			    | 19622130 |        |
 | Satria Wisnu Wibowo 			    | 19622145 |    Manfaat dari solusi    |
 | Muhammad Atpur Rafif 			    | 19622222 | Front-end |
