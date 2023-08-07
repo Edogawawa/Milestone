@@ -62,7 +62,7 @@ Seluruh data yang dibuat dalam aplikasi ini disimpan menggunakan `localStorage`,
 | --- | --- | --- |
 | Ahmad Habibie Marjan 			    | 19622003 |    Manfaat dari solusi    |
 | Shazya Audrea Taufik 			    | 19622016 |    Manfaat dari solusi dan Upload Proposal    |
-| Habib Akhmad Al Farisi 		    | 19622017 |    Solusi dan Manfaat dari solusi    |
+| Habib Akhmad Al Farisi 		    | 19622017 |    Menambah solusi dan Manfaat dari solusi    |
 | Rici Trisna Putra 			    | 19622061 |    Membuat high fidelity prototype di Figma    |
 | Hayya Zuhailii Kinasih 		    | 19622081 |    Manfaat dari solusi    |
 | Eduardus Alvito Kristiadi 	    | 19622112 | Backend |
