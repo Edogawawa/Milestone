@@ -262,7 +262,7 @@ export default function Home() {
         <table className="w-full border-collapse">
           <thead>
             <tr className="w-full">
-              <th className="w-10"></th>
+              <th className="w-10" id="left"></th>
               <th>Task Name</th>
               <th className="w-40">Date</th>
               <th className="w-60">
@@ -282,7 +282,7 @@ export default function Home() {
                   }
                 </div>
               </th>
-              <th className="w-10"></th>
+              <th className="w-10" id="right"></th>
             </tr>
           </thead>
           <tbody>

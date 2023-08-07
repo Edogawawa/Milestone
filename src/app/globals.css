@@ -22,8 +22,24 @@ input {
   outline: none;
 }
 
-table, th, td {
-  border: 1px solid gray;
+#left {
+  border-top-left-radius: 10px;
+}
+
+#right {
+  border-top-right-radius: 10px;
+}
+
+th {
+  background-color:rgb(17, 17, 122);
+  color: aliceblue;
+  border: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+td {
+  border: 2px solid gray;
 }
 
 th, td{
