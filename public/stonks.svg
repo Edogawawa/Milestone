@@ -1,0 +1,64 @@
+<svg width="43" height="53" viewBox="0 0 43 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 184">
+<g id="Clip path group">
+<mask id="mask0_26_272" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="37" width="8" height="16">
+<g id="bd7778814c">
+<path id="Vector" d="M0 37.8271H7.63907V52.0505H0V37.8271Z" fill="white"/>
+</g>
+</mask>
+<g mask="url(#mask0_26_272)">
+<g id="Group">
+<path id="Vector_2" d="M0.00244141 37.8394H7.53128V52.0508H0.00244141V37.8394Z" fill="white"/>
+</g>
+</g>
+</g>
+<g id="Clip path group_2">
+<mask id="mask1_26_272" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="35" width="9" height="18">
+<g id="62d52fd706">
+<path id="Vector_3" d="M11.5952 35.8442H19.3754V52.0504H11.5952V35.8442Z" fill="white"/>
+</g>
+</mask>
+<g mask="url(#mask1_26_272)">
+<g id="Group_2">
+<path id="Vector_4" d="M11.679 52.0502V35.8845H19.2712V52.0502H11.679Z" fill="white"/>
+</g>
+</g>
+</g>
+<g id="Clip path group_3">
+<mask id="mask2_26_272" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="23" y="30" width="9" height="23">
+<g id="04d902ddfc">
+<path id="Vector_5" d="M23.3315 30.9634H31.2436V52.0505H23.3315V30.9634Z" fill="white"/>
+</g>
+</mask>
+<g mask="url(#mask2_26_272)">
+<g id="Group_3">
+<path id="Vector_6" d="M23.3569 31.0881H31.1928V52.0507H23.3569V31.0881Z" fill="white"/>
+</g>
+</g>
+</g>
+<g id="Clip path group_4">
+<mask id="mask3_26_272" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="35" y="22" width="8" height="31">
+<g id="64515ecfc8">
+<path id="Vector_7" d="M35.3315 22.7268H42.7162V52.0505H35.3315V22.7268Z" fill="white"/>
+</g>
+</mask>
+<g mask="url(#mask3_26_272)">
+<g id="Group_4">
+<path id="Vector_8" d="M35.3403 22.739H42.7157V52.0502H35.3403V22.739Z" fill="white"/>
+</g>
+</g>
+</g>
+<g id="Clip path group_5">
+<mask id="mask4_26_272" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="43" height="34">
+<g id="c8a38d774a">
+<path id="Vector_9" d="M0 0H42.7252V33.0988H0V0Z" fill="white"/>
+</g>
+</mask>
+<g mask="url(#mask4_26_272)">
+<g id="Group_5">
+<path id="Vector_10" d="M0.00244141 32.9689C0.00244141 32.9689 19.9763 29.8504 33.6504 8.88183L29.1947 5.50773L42.7184 0V16.4845L39.0302 12.7904C39.0302 12.7904 22.2804 34.6706 0.00244141 32.9689Z" fill="white"/>
+</g>
+</g>
+</g>
+</g>
+</svg>
